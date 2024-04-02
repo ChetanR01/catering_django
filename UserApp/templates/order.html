@@ -31,6 +31,8 @@
                       <th scope="col">Total</th>
                       <th scope="col">Venue</th>
                       <th scope="col">Status</th>
+                      <th scope="col">View Menu</th>
+                      <th scope="col">Bill</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -43,7 +45,6 @@
                       <td>{{obj.total_price}}</td>
                       <td>{{obj.venue}}</td>
                       <td>{{obj.status}}</td>
-
     
                       <td>
                             <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalDialog1Scrollable{{obj.id}}">
@@ -76,6 +77,14 @@
                               </div>
                             </div>
                           </div>  
+                          </td>
+
+                          <td>
+                            <a href="{% url "invoice" obj.id %}">
+                              <button type="button" class="btn btn-primary">
+                                <i class="bi bi-file-earmark-text"></i> Generate Bill
+                              </button>
+                            </a>
                           </td>
                     </tr>
                     {% endfor %}
