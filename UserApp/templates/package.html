@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Food Package</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="">Home</a></li>
+            <li class="breadcrumb-item active">Food Package</li>
+          </ol>
+        </nav>
+      </div><!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+            {% for obj in data%}
+            <div class="col-4">
+                <!-- Card with an image on top -->
+                <div class="card text-center">
+                  <img src="{{obj.image.url}}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title"><strong>{{obj.name}}</strong></h5>
+                    <p class="card-text">{{obj.thali_tag_line}}</p>
+                    <button type="button" class="btn btn-primary">
+                      Price<strong><i class="bi bi-currency-rupee"></i>{{obj.price}}/-</strong>
+                    </button>
+
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered2{{obj.id}}">
+                        <i class="bi bi-star me-1"></i>Explore
+                      </button>
+
+                      <a href="{% url "add_to_cart" obj.id %}">
+                        <button type="button" class="btn btn-success">
+                          <i class="bi bi-cart-plus"></i> Add
+                        </button>
+                      </a>
+
+                      <div class="modal fade" id="verticalycentered2{{obj.id}}" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">{{obj.name}} Menu</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <h4 class="">{{obj.thali_items}}</h4>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </div><!-- End Card with an image on top -->
+            </div>
+            {%endfor%}
+        </div>
+    </section>
+
+</main>
+
+{% endblock content %}

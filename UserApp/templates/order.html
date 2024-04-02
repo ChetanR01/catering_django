@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Your Orders</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="">Home</a></li>
+            <li class="breadcrumb-item active">Your Orders</li>
+          </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+          <div class="col-lg-12">
+
+            <div class="card">
+              <div class="card-body">
+                <!-- Table with stripped rows -->
+                <table class="table datatable">
+                  <thead>
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Time</th>
+                      <th scope="col">Guest</th>
+                      <th scope="col">Total</th>
+                      <th scope="col">Venue</th>
+                      <th scope="col">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for obj in data %}
+                    <tr>
+                      <td>{{obj.id}}</td>
+                      <td>{{obj.date}}</td>
+                      <td>{{obj.time}}</td>
+                      <td>{{obj.guest_count}}</td>
+                      <td>{{obj.total_price}}</td>
+                      <td>{{obj.venue}}</td>
+                      <td>{{obj.status}}</td>
+
+    
+                      <td>
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalDialog1Scrollable{{obj.id}}">
+                              <i class="bi bi-eye-fill"></i> Menu
+                            </button>
+                        
+                          <div class="modal fade" id="modalDialog1Scrollable{{obj.id}}" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-scrollable">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title">Menu Details</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  
+                                  <ul>
+                                    <h4>Order Dishes</h4>
+                                    {% for cart_item in obj.items.all %}
+                                        <li>
+                                            {{ cart_item.dish.name }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                                   
+                                    
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>  
+                          </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+                <!-- End Table with stripped rows -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+</main>
+
+
+{% endblock content %}

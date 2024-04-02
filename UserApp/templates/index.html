@@ -1,0 +1,190 @@
+
+{% load static %}
+{% load custom_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "Index/css/style.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Food</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <input type="checkbox">
+            <div class="hamburger-lines">
+                <span class="line line1"></span>
+                <span class="line line2"></span>
+                <span class="line line3"></span>
+            </div>
+            <ul class="menu-items">
+                <li><a href="#showcase">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#food">Trending</a></li>
+                <li><a href="#food-menu">Menu</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="{% url "category" %}">Bookings</a></li>
+            </ul>
+            <h1 class="logo">Zaika</h1>
+        </div>
+    </nav>
+    <section class="showcase-area" id="showcase">
+        <div class="showcase-container">
+            <h1 class="main-title">Welcome to Zaika Caterers</h1>
+            <p>- A Real Diamond of Catering Industry</p>
+            <a href="#food-menu" class="btn btn-primary">Explore Our Menu</a>
+        </div>
+    </section>  
+    <section id="about">
+        <div class="about-wrapper container">
+            <div class="about-text">
+                <p class="small">About us</p>
+                <h2>Serving Good food</h2>
+                <p>Looking for a perfect food affair to complement your special occasion? Look no further! Zaika Caterers provide a sumptuous food itinerary to fulfill your each and every catering need. Be it a large, mid or small sized event, our full-range of outdoor and indoor catering services cover complete food preparation and presentation for formal and informal gatherings.</p>
+
+            </div>
+            <div class="about-img">
+                <img src="{% static "Index/img/about-photo2.jpg" %}" alt="About us">
+            </div>
+        </div>
+    </section>
+    <section id="food">
+        <h2>Our Trending Platters</h2>
+        <div class="food-container container">
+            <div class="food-type fruit">
+                <div class="img-container">
+                    <img src="{% static "Index/img/food1.jpg" %}" alt="">
+                    <div class="img-content">
+                        <h3>Silver Platters</h3>
+                        <a href="{% url "package-page" %}" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="food-type vegetable">
+                <div class="img-container">
+                    <img src="{% static "Index/img/food2.jpg" %}" alt="">
+                    <div class="img-content">
+                        <h3>Golden Platters</h3>
+                        <a href="{% url "package-page" %}" class="btn btn-primary" target="_blank">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="food-type grain">
+                <div class="img-container">
+                    <img src="{% static "Index/img/food3.jpg" %}" alt="">
+                    <div class="img-content">
+                        <h3>Platinum Platters</h3>
+                        <a href="{% url "package-page" %}" class="btn btn-primary" target="_blank">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="food-menu">
+        <h2 class="food-menu-heading">Food Menu</h2>
+        <div class="food-menu-container container">
+            <div class="food-menu-item">
+                <div class="food-img">
+                    <img src="{% static "Index/img/menu1.jpg" %}" alt="">
+                </div>
+                <div class="food-desc">
+                    <h2 class="food-title">North Indian</h2>
+                    <p>Shahi Paneer, Aloo Gobi, Roti, Dal Tadka, Dal makhani, Rice, Chaats, Jalebi.</p>
+                    <a href="{% url "category" %}"><p class="food-price">View More</p></a>
+                </div>
+            </div>
+            <div class="food-menu-item">
+                <div class="food-img">
+                    <img src="{% static "Index/img/menu2.jpg" %}" alt="">
+                </div>
+                <div class="food-desc">
+                    <h2 class="food-title">South Indian</h2>
+                    <p>Dosa, Idli, Appam, Malabar Parota, Pesarattu, Sambar, Coconut Rice, Rice Kheer.</p>
+                    <a href="{% url "category" %}"><p class="food-price">View More</p></a>
+                </div>
+            </div>
+            <div class="food-menu-item">
+                <div class="food-img">
+                    <img src="{% static "Index/img/menu3.jpg" %}" alt="">
+                </div>
+                <div class="food-desc">
+                    <h2 class="food-title">Chinese</h2>
+                    <p>Hot and Sour Soup, Quick Noodles, Szechwan Chilli, Spring Rolls.</p>
+                    <a href="{% url "category" %}"><p class="food-price">View More</p></a>
+                </div>
+            </div>
+            <div class="food-menu-item">
+                <div class="food-img">
+                    <img src="{% static "Index/img/menu4.jpg" %}" alt="">
+                </div>
+                <div class="food-desc">
+                    <h2 class="food-title">Italian</h2>
+                    <p>Pizza, Lasagna, Classic Pasta, Gelato, Pistachio Biscotti.</p>
+                    <a href="{% url "category" %}"><p class="food-price">View More</p></a>
+                </div>
+            </div>
+            <div class="food-menu-item">
+                <div class="food-img">
+                    <img src="{% static "Index/img/menu5.jpg" %}" alt="">
+                </div>
+                <div class="food-desc">
+                    <h2 class="food-title">Mocktails</h2>
+                    <p>Mint and Ginger Lemon Drink, Blue Lagoon Mocktail, Khus Drink.</p>
+                    <a href="{% url "category" %}"><p class="food-price">View More</p></a>
+                </div>
+            </div>
+            <div class="food-menu-item">
+                <div class="food-img">
+                    <img src="{% static "Index/img/menu6.jpg" %}" alt="">
+                </div>
+                <div class="food-desc">
+                    <h2 class="food-title">Deserts</h2>
+                    <p>Gulab Jamun, Gajar ka Halwa, Mysore Pak, Rasmalai, Kulfi.</p>
+                    <a href="{% url "category" %}"><p class="food-price">View More</p></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="testimonials">
+        <h2 class="testimonial-title">What are customers say</h2>
+        <div class="testimonial-container container">
+            {% for rate in ratings  %}
+            
+            <div class="testimonial-box">
+                <div class="star-rating">
+                    {% for i in rate.rate|make_range  %}
+                    <span class="fa fa-star checked"></span>
+                    {% endfor %}
+                </div>
+                <p class="testimonial-text">{{rate.message}}</p>
+                <div class="customer-detail">
+                    <p class="customer-name">{{rate.name|title}}</p>
+                </div>
+            </div>
+            
+            {% endfor %}
+        </div>
+    </section>
+    <section id="contact">
+        <div class="contact-container container">
+            <div class="contact-image">
+                <img src="{% static "Index/img/restraunt-image.jpg" %}" alt="">
+            </div>
+            <div class="form-container">
+                <h2>Contact us</h2>
+                <input type="text" placeholder="Name">
+                <input type="email" name="" id="" placeholder="Email">
+                <textarea name="" id="" cols="30" rows="10" placeholder="Message here"></textarea>
+                <a href="#" class="btn btn-primary">Sumbit</a>
+            </div>
+        </div>
+    </section>
+    <footer id="footer">
+        <h2>Zaika &copy;All Rights Reserved</h2>
+    </footer>
+</body>
+</html>

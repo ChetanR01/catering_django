@@ -1,0 +1,51 @@
+{% extends "staff_base.html" %}
+{% load static %}
+{% block content %}
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Ingredients</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="">Home</a></li>
+            <li class="breadcrumb-item active">Ingredients</li>
+          </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+
+
+            {% for obj in data %}
+          
+          <div class="col-3">
+            <!-- Card with an image on top -->
+            <div class="card text-center">
+              <div class="card-body">
+                <h5 class="card-title"><strong>{{obj.name}}</strong></h5>
+                {% if obj.quantity < 0 %}
+                <p class="card-text" style="color:red">No Stock Available</p>
+                {% endif %}
+
+                <p class="card-text">{{obj.quantity}} Grams</p>
+
+              </div>
+            </div><!-- End Card with an image on top -->
+          </div>
+
+          {% endfor %}
+
+            </div><!-- End Card with an image on top -->
+          </div>
+
+
+        </div>
+    </section>
+
+
+</main>
+
+
+{% endblock content %}

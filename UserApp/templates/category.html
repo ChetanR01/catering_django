@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Food Categories</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="">Home</a></li>
+            <li class="breadcrumb-item active">Food Categories</li>
+          </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+
+          {% for obj in data %}
+          
+          <div class="col-4">
+            <!-- Card with an image on top -->
+            <div class="card">
+              <img src="{{obj.image.url}}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title"><strong>{{obj.title}}</strong></h5>
+                <p class="card-text">{{obj.desc}}</p>
+                <a href="{% url "option" obj.id %}"><button type="button" class="btn btn-primary"><i class="bi bi-star me-1"></i>Explore</button></a>
+              </div>
+            </div><!-- End Card with an image on top -->
+          </div>
+
+          {% endfor %}
+
+        </div>
+    </section>
+
+
+</main>
+
+
+{% endblock content %}

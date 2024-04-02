@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Cart</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="">Home</a></li>
+            <li class="breadcrumb-item active">Cart</li>
+          </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+        {% if items|length == 100 %}
+        
+        <div class="card">
+            <div class="card-body text-center">
+              <h5 class="card-title"><i class="bi bi-cart-x-fill"></i> Cart Empty</h5>
+              <a href="{% url "home-page" %}"><button type="button" class="btn btn-primary"><i class="bi bi-cart"></i> Add Menu</button></a>
+            </div>
+          </div><!-- End Card with an image on top -->
+        </div>
+
+        {% else %}
+         
+
+        <div class="card">
+            <div class="card-body ">
+              
+              <h5 class="card-title"><i class="bi bi-cart"></i></h5>
+              
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Type</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Item</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Remove</th>
+                        <th scope="col">Replace</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for item in items  %}
+                        
+                        <tr>
+                            <td>{{item.dish.option.category.title}}</td>
+                            <td>{{item.dish.option.title}}</td>
+                            <td>{{item.dish.name}}</td>
+                            <td>{{item.dish.price}}</td>
+                            <td>
+                                <a href="{% url "add_to_cart" item.dish.id %}">
+                                    <button type="button" class="btn btn-danger">
+                                      <i class="bi bi-cart-dash"></i> Remove
+                                    </button>
+                                  </a>
+                            </td>
+                            <td>
+                                <a href="{% url "add_to_cart" item.dish.id %}">
+                                  <a href="{% url "add_to_cart" item.dish.id %}?extra_arg1='Replace'">
+                                    <button type="button" class="btn btn-warning text-dark">
+                                      <i class="bi bi-arrow-counterclockwise"></i> Replace
+                                    </button>
+                                  </a>
+                            </td>
+                        </tr>
+                        
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+
+                <hr>
+                <div class="row justify-content-end">
+                      
+                  <div class="col-lg-2 col-md-3 label "><a href="{% url "category" %}"><button type="button"  class="btn btn-primary">Add More</button></a></div>
+              </div>
+
+              <div class="row mt-2 justify-content-end">
+
+                  <div class="col-lg-2 col-md-3 label "><strong>Total:</strong></div>
+                  <div class="col-lg-2 col-md-3">&#8377;{{total}}</div>
+              </div>
+                    
+                    <div class="row justify-content-center">
+                        <div class="col-3" style="inline-size: auto;">
+                          <form action="/book_order" method="get">
+                            {% comment %} {% csrf_token %} {% endcomment %}
+                            <strong style="margin-left: -7em;">Add Guest Count:</strong> <input type="number" min="1" onchange="calGrandTotal()" placeholder="Guest Count" name="count" >
+                            {% comment %} <button type="submit">Ok</button> {% endcomment %}
+                            {% comment %} <strong style="margin-left: 18em;">Grand Total:&emsp;&emsp;&emsp; ₹ <span id="grand_total" >{{total}}<span></strong> {% endcomment %}
+                            <br>
+                            <br>
+                            <button  class="btn btn-primary" type="submit">Place Order</button>
+                          </form>
+                        </div>
+                        
+                    </div>
+            </div>
+          </div><!-- End Card with an image on top -->
+        </div>
+        
+        {% endif %}
+    </section>
+
+
+</main>
+
+
+{% endblock content %}

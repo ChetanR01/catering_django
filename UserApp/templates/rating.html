@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<style>
+    /***
+ *  Simple Pure CSS Star Rating Widget Bootstrap 4 
+ * 
+ *  www.TheMastercut.co
+ *  
+ ***/
+
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+/* <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"> */
+/* Styling h1 and links
+––––––––––––––––––––––––––––––––– */
+h1[alt="Simple"] {color: white;}
+a[href], a[href]:hover {color: grey; font-size: 0.5em; text-decoration: none}
+
+
+
+.starrating > input {display: none;}  /* Remove radio buttons */
+
+.starrating > label:before { 
+  content: "\f005"; /* Star */
+  margin: 2px;
+  font-size: 2em;
+  font-family: FontAwesome;
+  display: inline-block; 
+}
+
+.starrating > label
+{
+  color: #f7f30f; /* Start color when not clicked */
+  
+}
+
+.starrating > input:checked ~ label
+{ color: #ffca08 ; } /* Set yellow color when star checked */
+
+.starrating > input:hover ~ label
+{ color: #ffca08 ;  } /* Set yellow color when star hover */
+
+
+  </style>
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Rate Us</h1>
+    </div><!-- End Page Title -->
+
+    <section class="section contact">
+
+      <div class="row gy-4">
+
+        <div class="col-xl-6">
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="info-box card">
+                <i class="bi bi-geo-alt"></i>
+                <h3>Address</h3>
+                <p>A108 Adam Street,<br>New York, NY 535022</p>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="info-box card">
+                <i class="bi bi-telephone"></i>
+                <h3>Call Us</h3>
+                <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="info-box card">
+                <i class="bi bi-envelope"></i>
+                <h3>Email Us</h3>
+                <p>info@example.com<br>contact@example.com</p>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="info-box card">
+                <i class="bi bi-clock"></i>
+                <h3>Open Hours</h3>
+                <p>Monday - Friday<br>9:00AM - 05:00PM</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-xl-6">
+          <div class="card p-4">
+            <div class="pagetitle text-center">
+              <h1><i class="bi bi-star"></i> Help Us Get Better.</h1>
+            </div><!-- End Page Title -->
+            {% if messages %}
+            {% for message in messages  %}
+                <div class="pb-2" style="color:green"><i class="fa fa-check" aria-hidden="true"></i> {{message}}</div>   
+            {% endfor %}
+            {% endif %}
+            <form method="post">
+                {% csrf_token %}
+
+              <div class="row gy-4">
+
+                <div class="col-md-12">
+                  <input type="text" name="name" class="form-control" placeholder="Your Full Name" required>
+                </div>
+
+
+                <div class="col-md-12">
+                  <textarea class="form-control" name="message" rows="3" placeholder="Let us know your Review" required></textarea>
+                </div>
+                <div class="col-12" >
+                    <h4 class="text-center text-dark" alt="Simple">Rate Us</h4>
+                        <div class="col starrating risingstar d-flex justify-content-center flex-row-reverse" >
+                            <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 star">5</label>
+                            <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 star">4</label>
+                            <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 star">3</label>
+                            <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 star">2</label>
+                            <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star">1</label>
+                        </div>
+                  
+                </div>
+                
+                <div class="col-md-12 text-center">
+                    <button class="btn btn-primary" type="submit">Submit</button>                  
+                </div>
+
+              </div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main><!-- End #main -->
+
+{% endblock content %}

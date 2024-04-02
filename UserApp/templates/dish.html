@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>{{option_title}} Dish</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="">Home</a></li>
+            <li class="breadcrumb-item active">{{option_title}} Dish</li>
+          </ol>
+        </nav>
+      </div><!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+
+          {% for obj in data %}
+
+            <div class="col-3">
+                <!-- Card with an image on top -->
+                <div class="card text-center">
+                  <img src="{{obj.image.url}}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title"><strong>{{obj.name}}</strong></h5>
+                    <div class="d-flex justify-content-between">
+                      <button type="button" class="btn btn-primary">
+                        Price<strong><i class="bi bi-currency-rupee"></i>{{obj.price}}/-</strong>
+                      </button>
+                      {% if obj.cart_item_exists is True %}
+                      <a href="{% url "add_to_cart" obj.id %}">
+                        <button type="button" class="btn btn-danger">
+                          <i class="bi bi-cart-dash"></i> Remove
+                        </button>
+                      </a>
+                      {% else %}
+                      <a href="{% url "add_to_cart" obj.id %}">
+                        <button type="button" class="btn btn-success">
+                          <i class="bi bi-cart-plus"></i> Add
+                        </button>
+                      </a>
+
+                      {% endif %}
+                    </div>
+                  </div>
+                </div><!-- End Card with an image on top -->
+            </div>
+            {% endfor %}
+
+        </div>
+    </section>
+
+
+</main>
+
+
+{% endblock content %}

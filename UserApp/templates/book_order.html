@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Checkout Order</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="">Home</a></li>
+            <li class="breadcrumb-item active">Checkout Order</li>
+          </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section>
+        <div class="card">
+            <div class="card-body">
+
+
+              <!-- Floating Labels Form -->
+              <form class="row pt-4 g-3" method="post">
+                {% csrf_token %}
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingEmail" name="name" pattern="[a-zA-Z]+" oninvalid="setCustomValidity('Please enter alphabets only. ')"  placeholder="Your Email">
+                    <label for="floatingEmail">Your Name</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <input type="tel" class="form-control" id="floatingEmail" name="phone" placeholder="Your Phone Number" pattern = "^\d{10}$" oninvalid="setCustomValidity('Phone no. must be of 10 digits')" >
+                    <label for="floatingEmail">Your Phone Number</label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Address" name="venue" id="floatingTextarea" style="height: 100px;"></textarea>
+                    <label for="floatingTextarea">Venue Address</label>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-floating">
+                  <input type="date" name="date" class="form-control" required id="dateInput">
+                  <label for="inputDate" >Date</label>
+                  </div>
+              </div>
+              <div class="col-6">
+                  <div class="form-floating">
+                  <input type="time" name="time" class="form-control" required id="timeInput">
+                  <label for="inputDate" >Time</label>
+                  </div>
+              </div>
+              <div class="col-12">
+                  <div class="form-floating">
+                  <input type="Number" min="1" name="count" class="form-control" readonly value="{{count}}">
+                  <label for="inputDate" >Guests Count</label>
+                  </div>
+              </div>
+                
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+              </form><!-- End floating Labels Form -->
+
+            </div>
+          </div>
+    </section>
+
+
+</main>
+<script>
+  // Get today's date
+  var today = new Date().toISOString().split('T')[0];
+  
+  // Set the minimum date for the date input field
+  document.getElementById("dateInput").min = today;
+</script>
+
+<script>
+  // Get current time
+  var now = new Date();
+  
+  // Set minimum and maximum times
+  var minTime = new Date();
+  minTime.setHours(9, 0, 0); // 9:00 AM
+  
+  var maxTime = new Date();
+  maxTime.setHours(21, 0, 0); // 9:00 PM
+  
+  // Convert times to string in the format "HH:MM"
+  var minTimeString = minTime.toTimeString().substring(0, 5);
+  var maxTimeString = maxTime.toTimeString().substring(0, 5);
+  
+  // Set the min and max attributes of the time input field
+  document.getElementById("timeInput").setAttribute("min", minTimeString);
+  document.getElementById("timeInput").setAttribute("max", maxTimeString);
+</script>
+
+{% endblock content %}
