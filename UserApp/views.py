@@ -4,6 +4,8 @@ from UserApp.models import *
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from CateringManagementSystem.utils import render_to_pdf
+from .models import Users
 
 # Create your views here.
 
@@ -172,3 +174,21 @@ def rating(request):
         messages.error(request,"Thank you for rating us.")
         return redirect('rating')
     return render(request,'rating.html')
+
+
+def generate_report(request,id):
+    template_name = "invoice_template.html"
+    user=Users.objects.get(id=request.user.id)
+    order = Order.objects.get(id=id)
+    order_items = order.items.all()
+
+    return render_to_pdf(
+        template_name,
+        {
+            "user":user,
+            "order":order,
+            "order_items":order_items           
+        },
+    )
+
+
