@@ -79,24 +79,4 @@
   document.getElementById("dateInput").min = today;
 </script>
 
-<script>
-  // Get current time
-  var now = new Date();
-  
-  // Set minimum and maximum times
-  var minTime = new Date();
-  minTime.setHours(9, 0, 0); // 9:00 AM
-  
-  var maxTime = new Date();
-  maxTime.setHours(21, 0, 0); // 9:00 PM
-  
-  // Convert times to string in the format "HH:MM"
-  var minTimeString = minTime.toTimeString().substring(0, 5);
-  var maxTimeString = maxTime.toTimeString().substring(0, 5);
-  
-  // Set the min and max attributes of the time input field
-  document.getElementById("timeInput").setAttribute("min", minTimeString);
-  document.getElementById("timeInput").setAttribute("max", maxTimeString);
-</script>
-
 {% endblock content %}

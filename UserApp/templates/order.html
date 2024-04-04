@@ -21,7 +21,7 @@
             <div class="card">
               <div class="card-body">
                 <!-- Table with stripped rows -->
-                <table class="table datatable">
+                <table class="table">
                   <thead>
                     <tr>
                       <th scope="col">ID</th>
@@ -32,7 +32,6 @@
                       <th scope="col">Venue</th>
                       <th scope="col">Status</th>
                       <th scope="col">View Menu</th>
-                      <th scope="col">Bill</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -79,13 +78,6 @@
                           </div>  
                           </td>
 
-                          <td>
-                            <a href="{% url "invoice" obj.id %}">
-                              <button type="button" class="btn btn-primary">
-                                <i class="bi bi-file-earmark-text"></i> Generate Bill
-                              </button>
-                            </a>
-                          </td>
                     </tr>
                     {% endfor %}
                   </tbody>

@@ -17,7 +17,6 @@ urlpatterns = [
      path('rating/',rating,name="rating"),
      path('package/',packagePageView,name='package-page'),
     #EXTRAS
-    path('invoice/<int:id>',generate_report,name='invoice'),
 
 
 ]

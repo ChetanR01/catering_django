@@ -85,6 +85,7 @@
 
                   <div class="col-lg-2 col-md-3 label "><strong>Total:</strong></div>
                   <div class="col-lg-2 col-md-3">&#8377;{{total}}</div>
+                  <input type="hidden" readonly name="hidden_total" value="{{total}}">
               </div>
                     
                     <div class="row justify-content-center">
@@ -92,8 +93,8 @@
                           <form action="/book_order" method="get">
                             {% comment %} {% csrf_token %} {% endcomment %}
                             <strong style="margin-left: -7em;">Add Guest Count:</strong> <input type="number" min="1" onchange="calGrandTotal()" placeholder="Guest Count" name="count" >
-                            {% comment %} <button type="submit">Ok</button> {% endcomment %}
-                            {% comment %} <strong style="margin-left: 18em;">Grand Total:&emsp;&emsp;&emsp; ₹ <span id="grand_total" >{{total}}<span></strong> {% endcomment %}
+                            <button type="button">Ok</button>
+                            <strong style="margin-left: 15em;">Grand Total:&emsp; ₹ <input type="number" readonly id="grand_total" value="{{total}}"></strong>
                             <br>
                             <br>
                             <button  class="btn btn-primary" type="submit">Place Order</button>
@@ -108,7 +109,19 @@
         {% endif %}
     </section>
 
+    <script>
+      function calGrandTotal() {
+          // Get the guest count input value
+          var guestCount = document.getElementsByName("count")[0].value;
+          var total = document.getElementsByName("hidden_total")[0].value;
 
+          // Calculate the total based on some logic (you can modify this as per your requirement)
+          var grandTotal = guestCount * total; 
+
+          // Update the grand total input value
+          document.getElementById("grand_total").value = grandTotal;
+      }
+  </script>
 </main>
 
 
